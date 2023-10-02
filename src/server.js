@@ -9,10 +9,15 @@ config();
 class Server {
   // constructor de classe
   constructor(app = express()) {
-    this.routes(app);
-    this.middlewares(app);
+    this.app = app;
+    this.middlewares(this.app);
+    this.routes(this.app);
     this.database();
-    this.initializeServer(app);
+    this.initializeServer(this.app);
+  }
+  //get app
+  getApp() {
+    return this.app;
   }
   // middlewares
   async middlewares(app) { 
